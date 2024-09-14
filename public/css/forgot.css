@@ -1,0 +1,139 @@
+/* General reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('/Images/pk.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(7px); 
+    z-index: -1;
+}
+nav{
+        background-color: #57024e;
+        padding: 1em;
+}
+    
+.logo {
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 1;
+        color: #f6ee02;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        margin-left: .5em;
+}
+.easy{
+        color: rgb(255, 255, 255);
+        font-size: .5em;
+}
+
+/* Container for the form */
+.forgot-password-container {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin-left: 35em;
+    margin-top: 7em;
+    border: 2px solid white;
+}
+
+/* Form header */
+.forgot-password-form h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #630154;
+}
+
+/* Label styling */
+.forgot-password-form label {
+    display: block;
+    margin-top: 8px;
+    color: #ff00dd;
+    font-weight: bold;
+}
+
+/* Input field styling */
+.forgot-password-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    border:2px solid yellow;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 2em;
+}
+
+.button-container button {
+    padding: .2em;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #91008f; /* Primary button color */
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+    background-color: #3c0138; /* Secondary button color */
+    color: yellow;
+}
+
+.button-container a button {
+    background-color: #3c0138; /* Secondary button color */
+    color: yellow;
+}
+
+.button-container a button:hover {
+    background-color: #91008f; /* Primary button color */
+    color: #fff;
+}
+
+
+
+
+/* Add these styles to your forgot.css */
+
+.notification {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.notification.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.notification.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+
+
+

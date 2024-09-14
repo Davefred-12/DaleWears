@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/update.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Update Profile - DaleWears</title>
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <section class="update-section">
+        <div class="form-container">
+            <h1>Update Profile</h1>
+
+            <form action="/update-profile" method="POST" enctype="multipart/form-data">
+                <!-- Bio Data -->
+                <div class="form-group">
+                    <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+                    <input type="text" id="username" name="username" placeholder="Username" readonly>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Email Address" required>
+                    <input type="tel" id="phone" name="phone" placeholder="Phone Number">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="dob" name="dob" placeholder="Date of Birth">
+                    <select id="gender" name="gender">
+                        <option value="" disabled selected>Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Account Details -->
+                <div class="form-group full-width">
+                    <h2>Account Details</h2>
+                    <p>Account Created: <span id="accountCreationDate">[Creation Date]</span></p>
+                    <p>Last Login: <span id="lastLogin">[Last Login Date]</span></p>
+                </div>
+
+                <!-- Password Change -->
+                 <h2>Change your Password</h2>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="New Password">
+                    <input type="password" id="passwordConfirmation" name="passwordConfirmation" placeholder="Confirm New Password">
+                </div>
+
+                <!-- Address & Contact Information -->
+                <div class="form-group">
+                    <input type="text" id="shippingAddress" name="shippingAddress" placeholder="Shipping Address">
+                    <input type="text" id="billingAddress" name="billingAddress" placeholder="Billing Address">
+                </div>
+
+                <!-- Preferences & Settings -->
+                <div class="form-group">
+                    <select id="notifications" name="notifications">
+                        <option value="" disabled selected>Notification Preferences</option>
+                        <option value="email">Email</option>
+                        <option value="sms">SMS</option>
+                        <option value="push">Push Notifications</option>
+                    </select>
+                    <select id="language" name="language">
+                        <option value="" disabled selected>Preferred Language</option>
+                        <option value="english">English</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="italian">Italian</option>
+                        <option value="french">French</option>
+                        <option value="dutch">Dutch</option>
+                    </select>
+                </div>
+
+                <!-- Payment Information -->
+                <div class="form-group full-width">
+                    <h2>Payment Information</h2>
+                    <input type="text" id="paymentMethod" name="paymentMethod" placeholder="Payment Method">
+                </div>
+
+                <!-- Security Information -->
+                <div class="form-group full-width">
+                    <h2>Security Information</h2>
+                    <select id="securityQuestion" name="securityQuestion">
+                        <option value="" disabled selected>Security Question</option>
+                        <option value="motherMaidenName">What is your mother's maiden name?</option>
+                        <option value="firstPet">What was the name of your first pet?</option>
+                        <option value="firstSchool">What is the name of your first school?</option>
+                        <option value="favoriteBook">What is your favorite book?</option>
+                        <option value="birthCity">In what city were you born?</option>
+                    </select>
+                    <input type="text" id="securityAnswer" name="securityAnswer" placeholder="Security Answer">
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-group full-width">
+                    <button type="submit" class="update-button">Update Profile</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <%- include('partials/footer') %>
+
+    <script>
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+/* General reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('/Images/pd.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* filter: blur(1px);  */
+    z-index: -1;
+}
+nav{
+        background-color: #57024e;
+        padding: 1em;
+}
+    
+.logo {
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 1;
+        color: #f6ee02;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        margin-left: .5em;
+}
+.easy{
+        color: rgb(255, 255, 255);
+        font-size: .5em;
+}
+
+.login-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    z-index: 2;
+}
+
+.login-form {
+    margin-top: 8em;
+    padding: 2em;
+    width: 100%;
+    max-width: 350px;
+    background-color: white; 
+    border-radius: 20px;
+    z-index: 3;
+}
+
+.login-form h2 {
+    color: #333;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.login-form label {
+    display: block;
+    color: #333;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.login-form input {
+    width: calc(100% - 1em);
+    padding: 0.7em;
+    margin-bottom: 1.5em;
+    border: 1px solid #f3eb07;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 0.7em;
+    border: none;
+    border-radius: 5px;
+    background-color: #e305b0;
+    color: #ffffff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+    background-color: #230019;
+    color: yellow;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input[type="password"],
+.password-container input[type="text"] {
+    width: 95%;
+    padding-right: 30px; /* Add padding to make space for the icon */
+}
+
+.password-container .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #8d0088;
+}
+
+/* Add icons using FontAwesome or any other icon library */
+.toggle-password::before {
+    content: "\f06e"; /* FontAwesome eye icon */
+    font-family: "Font Awesome 5 Free"; /* Use the correct font family */
+    font-weight: 900; /* Font weight for FontAwesome solid icons */
+}
+
+.password-container.show-password .toggle-password::before {
+    content: "\f070"; /* FontAwesome eye-slash icon */
+}
+
+
+.additional-links {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.additional-links a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.additional-links a:hover {
+    color: #0056b3;
+}
+

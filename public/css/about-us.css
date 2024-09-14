@@ -1,0 +1,411 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    color: #333;
+}
+
+/* HEADER */
+.header {
+    background-color: #57024e;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: .5;
+    color: #f6ee02;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.easy{
+    color: rgb(255, 255, 255);
+    font-size: .5em;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    margin: 0 1em;
+    position: relative;
+}
+
+.nav-links a {
+    color: #f6ee02;
+    text-decoration: none;
+    font-size: 1em;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+.navbar-profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.sign-up{
+    border: 2px solid red;
+    padding: .5em;
+    border-radius: 10px;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown toggle */
+.dropdown-toggle {
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff; /* Adjust based on your navbar color scheme */
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: rgb(129, 1, 108);
+    z-index: 1;
+    min-width: 50px;
+    border-radius: 10px;
+    padding: 10px 0;
+}
+
+/* Dropdown links */
+.dropdown-menu a {
+    color: #ffffff; 
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #57024e;
+    color: #f6ee02;  
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+.cart-link {
+    position: relative;
+    color: yellow;
+}
+
+.cart-link .fa-shopping-cart {
+    font-size: 1.5em;
+}
+
+.cart-count {
+    background-color: #ff0000;
+    color: #ffffff;
+    border-radius: 50%;
+    padding: 0.2em 0.5em;
+    font-size: 0.8em;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    height: 2px;
+    width: 25px;
+    background-color: #f6ee02;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .hamburger {
+        display: flex;
+    }
+
+}
+
+/* Dropdown styles */
+.dropdown .dropbtn {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    background-color: rgb(129, 1, 108);
+    display: none;
+    position: absolute;
+    min-width: 80px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 10px;
+    top: 100%;
+    left: 0;
+    flex-direction: column;
+    margin-left: -1.5em;
+}
+
+.dropdown-content a {
+    color: #ffffff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #ddd;
+    font-size: .9em;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.dropdown-content a:hover {
+    background-color: #57024e;
+    color: #f6ee02;  
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+.show {
+    display: flex !important;
+}
+
+
+
+
+/* Story Section */
+.story-section {
+    position: relative;
+    padding: 40px 20px;
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5); 
+}
+
+.story-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/Images/pah.jpg') no-repeat center center/cover;
+    filter: blur(3px);
+    z-index: -1;
+}
+
+.story-section h3 {
+    font-size: 2em;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.story-section p {
+    font-size: 1em;
+    color: #ffffff;
+    line-height: 1.6;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: left;
+}
+
+/* About Section */
+.about-section {
+    margin-top: 4em;
+    text-align: center;
+    margin-bottom: -2em;
+}
+
+.about-section h2{
+    color: #57024e; 
+}
+
+/* Mission and Vision Section */
+.mission-vision-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 20px;
+    gap: 2em;
+}
+
+.mission-vision-section ul {
+    list-style-type: none;
+    padding: 0;
+    color: white;
+
+}
+
+.mission-vision-section li {
+    font-size: 1em;
+    color: #000000;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+.mission-vision-section li strong {
+    color: #7a0264; 
+    font-size: 1.2em;
+}
+
+.box {
+    background-color: #f6ee02;
+    color: #57024e; 
+    padding: 20px;
+    border-radius: 10px;
+    width: 40%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.box:hover{
+    transform: scale(1.05);
+}
+
+.box h4 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.box p {
+    font-size: 1em;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+
+/* Founders Section */
+.founders-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.founders-section h3 {
+    font-size: 1.8em;
+    color: #57024e; 
+    margin-bottom: 30px;
+}
+
+.founders {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.founder {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.founder img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.founder img:hover{
+    transform: scale(2.05);
+}
+
+.founder h4 {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 10px;
+}
+
+.founder p {
+    font-size: 1em;
+    color: #666;
+}
+
+.social-handles {
+    margin-top: 10px;
+}
+
+.social-handles a {
+    margin: 0 10px;
+    color: #57024e;
+    font-size: 1.2em;
+}
+
+.social-handles a:hover {
+    color: #ffe100;
+}
+
+
+/* Partnership Section */
+.partnership-section {
+    padding: 40px 20px;
+    background-image:linear-gradient(pink, purple);
+    color: #f6ee02;
+    text-align: center;
+}
+
+.partnership-section h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.partnership-section p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: white;
+}
+
+
+/* FOOTER */
+footer{
+    background-color: #57024e;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    text-align: center;
+}
+footer p{
+text-align: left;
+color: #ffffff;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-style: bold;
+}
+.social-media{
+margin-top: -1em;
+font-size: 1em;
+color: red;
+}

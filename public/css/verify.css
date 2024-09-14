@@ -1,0 +1,85 @@
+/* General reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('/Images/pl.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(7px); 
+    z-index: -1;
+}
+nav{
+        background-color: #57024e;
+        padding: 1em;
+}
+    
+.logo {
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 1;
+        color: #f6ee02;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        margin-left: .5em;
+}
+.easy{
+        color: rgb(255, 255, 255);
+        font-size: .5em;
+}
+.container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 900%;
+    max-width: 400px;
+}
+
+h1 {
+    margin-bottom: 1rem;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.code-input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 0 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}

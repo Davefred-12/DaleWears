@@ -1,0 +1,457 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    color: #333;
+}
+
+/* HEADER */
+.header {
+    background-color: #57024e;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: .5;
+    color: #f6ee02;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.easy{
+    color: rgb(255, 255, 255);
+    font-size: .5em;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    margin: 0 1em;
+    position: relative;
+}
+
+.nav-links a {
+    color: #f6ee02;
+    text-decoration: none;
+    font-size: 1em;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+.navbar-profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.sign-up{
+    border: 2px solid red;
+    padding: .5em;
+    border-radius: 10px;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown toggle */
+.dropdown-toggle {
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff; /* Adjust based on your navbar color scheme */
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: rgb(129, 1, 108);
+    z-index: 1;
+    min-width: 50px;
+    border-radius: 10px;
+    padding: 10px 0;
+}
+
+/* Dropdown links */
+.dropdown-menu a {
+    color: #ffffff; 
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #57024e;
+    color: #f6ee02;  
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+.cart-link {
+    position: relative;
+    color: yellow;
+}
+
+.cart-link .fa-shopping-cart {
+    font-size: 1.5em;
+}
+
+.cart-count {
+    background-color: #ff0000;
+    color: #ffffff;
+    border-radius: 50%;
+    padding: 0.2em 0.5em;
+    font-size: 0.8em;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    height: 2px;
+    width: 25px;
+    background-color: #f6ee02;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .hamburger {
+        display: flex;
+    }
+
+}
+
+/* Dropdown styles */
+.dropdown .dropbtn {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    background-color: rgb(129, 1, 108);
+    display: none;
+    position: absolute;
+    min-width: 80px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 10px;
+    top: 100%;
+    left: 0;
+    flex-direction: column;
+    margin-left: -1.5em;
+}
+
+.dropdown-content a {
+    color: #ffffff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #ddd;
+    font-size: .9em;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.dropdown-content a:hover {
+    background-color: #57024e;
+    color: #f6ee02;  
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+.show {
+    display: flex !important;
+}
+
+
+
+/* Contact Us Section */
+.contact-us {
+    position: relative;
+    padding: 40px 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.contact-us::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/Images/pag.jpg') no-repeat center center/cover;
+    filter: blur(5px);
+    z-index: -1;
+}
+.contact-us h2 {
+    color: #ffd900;
+    text-align: center;
+    font-size: 2em;
+    margin-top: -.5em;
+    font-weight: bolder;
+}
+.contact-details {
+    display: flex;
+    margin-left: 12em;
+    border-radius: 20px;
+    width: 70%;
+}
+.contact-info {
+    border-radius: 20px;
+    width: 50%;
+    background: rgba(255, 255, 255, 0.1); 
+}
+.contact-form{
+border-radius: 20px;
+width: 50%;
+background: rgba(255, 255, 255, 0.1); 
+}
+.contact-form h3, .contact-info h3 {
+    color: #fbff00;
+    font-weight: bolder;
+}
+.contact-form label, .contact-info p {
+    display: block;
+    margin-top: .5em;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 80%;
+    padding: 1em;
+    margin-top: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.contact-form button {
+    display: block;
+    width: 60%;
+    padding: 1em;
+    margin-bottom: 2em;
+    margin-top: 1em;
+    background-color: #6f0264;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 8em;
+}
+.contact-form button:hover {
+    background-color: #43003f;
+    color: yellow;
+}
+.contact-info .social-media a {
+    margin: 0 0.5em;
+    color: #57024e;
+    font-size: 1.5em;
+}
+.contact-info .social-media a:hover {
+    color: #ffe100;
+}
+
+
+/* FAQ Section */
+.faq-section {
+    padding: 20px;
+    background-image: linear-gradient(pink, rgb(80, 0, 80));
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+.faq-section h2 {
+    color: #57024e;
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.faq-section .faq {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.faq-section .faq h4 {
+    color: #b50091;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.faq-section .faq p {
+    color: #000000;
+    font-size: 1em;
+    margin: 0;
+}
+
+.faq-section .faq a {
+    color: #9f008f;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.faq-section .faq a:hover {
+    color: #ff0000;
+    text-decoration: underline;
+}
+
+/* Map Section */
+.map-section {
+    padding: 2em;
+}
+.map-section h2 {
+    color: #57024e;
+    text-align: center;
+    font-size: 2em;
+}
+#map {
+    width: 100%;
+    height: 400px;
+    background-color: white;
+}
+
+/* Newsletter Section */
+.newsletter-section {
+    padding: 2em;
+    background-image: linear-gradient(pink, rgb(87, 1, 87));
+    text-align: center;
+    gap: 2em;
+}
+.newsletter-section h2 {
+    color: #57024e;
+    font-size: 2em;
+}
+.newsletter-section p {
+    margin-top: 1em;
+    color: #fbff00;
+}
+.newsletter-section form {
+    margin-top: 1em;
+}
+.newsletter-section input {
+    padding: 1.2em;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.newsletter-section button {
+    padding: 1.2em;
+    margin-top: 1em;
+    background-color: #79006d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+}
+.newsletter-section button:hover {
+    background-color: #43003f;
+    color: #fbff00;
+}
+
+/* Customer Service Policies */
+.customer-service-policies {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+.customer-service-policies h2 {
+    color: #57024e;
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.customer-service-policies .policy {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.customer-service-policies .policy h4 {
+    color: #333;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.customer-service-policies .policy p {
+    color: #555;
+    font-size: 1em;
+    margin: 0;
+    display: none;
+}
+
+.customer-service-policies .policy.active p {
+    display: block;
+}
+
+
+
+/* FOOTER */
+footer{
+    background-color: #57024e;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    text-align: center;
+}
+footer p{
+text-align: left;
+color: #ffffff;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-style: bold;
+}
+.social-media{
+margin-top: -1em;
+font-size: 1em;
+color: red;
+}

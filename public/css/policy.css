@@ -1,0 +1,273 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    color: #333;
+}
+
+/* HEADER */
+.header {
+    background-color: #57024e;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: .5;
+    color: #f6ee02;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.easy{
+    color: rgb(255, 255, 255);
+    font-size: .5em;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    margin: 0 1em;
+    position: relative;
+}
+
+.nav-links a {
+    color: #f6ee02;
+    text-decoration: none;
+    font-size: 1em;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+.navbar-profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.sign-up{
+    border: 2px solid red;
+    padding: .5em;
+    border-radius: 10px;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown toggle */
+.dropdown-toggle {
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff; /* Adjust based on your navbar color scheme */
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: rgb(129, 1, 108);
+    z-index: 1;
+    min-width: 50px;
+    border-radius: 10px;
+    padding: 10px 0;
+}
+
+/* Dropdown links */
+.dropdown-menu a {
+    color: #ffffff; 
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: #57024e;
+    color: #f6ee02;  
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+.cart-link {
+    position: relative;
+    color: yellow;
+}
+
+.cart-link .fa-shopping-cart {
+    font-size: 1.5em;
+}
+
+.cart-count {
+    background-color: #ff0000;
+    color: #ffffff;
+    border-radius: 50%;
+    padding: 0.2em 0.5em;
+    font-size: 0.8em;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    height: 2px;
+    width: 25px;
+    background-color: #f6ee02;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .hamburger {
+        display: flex;
+    }
+
+}
+
+/* Dropdown styles */
+.dropdown .dropbtn {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    background-color: rgb(129, 1, 108);
+    display: none;
+    position: absolute;
+    min-width: 80px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 10px;
+    top: 100%;
+    left: 0;
+    flex-direction: column;
+    margin-left: -1.5em;
+}
+
+.dropdown-content a {
+    color: #ffffff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #ddd;
+    font-size: .9em;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.dropdown-content a:hover {
+    background-color: #57024e;
+    color: #f6ee02;  
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+.show {
+    display: flex !important;
+}
+
+
+
+/* POLICY */
+.policy-section {
+    padding: 20px;
+    max-width: 10000px;
+    margin: 0 auto;
+    margin-left:1em;
+}
+
+.policy-section h2 {
+    text-align: center;
+    color: #57024e;
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+.policy {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+
+}
+
+.policy-title {
+    background-color: #57024e;
+    color: #f6ee02;
+    padding: 10px;
+    cursor: pointer;
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.policy-content {
+    padding: 10px;
+    display: none;
+    background:white;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+}
+
+.policy-content p {
+    margin: 0;
+}
+
+
+/* FOOTER */
+footer{
+    background-color: #57024e;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    text-align: center;
+    /* margin-top: 13.1em; */
+}
+footer p{
+text-align: left;
+color: #ffffff;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-style: bold;
+}
+.social-media{
+margin-top: -1em;
+font-size: 1em;
+color: red;
+}

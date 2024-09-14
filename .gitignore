@@ -1,0 +1,97 @@
+# Node.js specific files and directories
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Logs
+logs
+*.log
+logs/*.log
+
+# Debugging tools
+.DS_Store
+.idea/
+.vscode/
+*.sublime-workspace
+
+# Operating system generated files
+Thumbs.db
+.DS_Store
+
+# Environment Variables
+.env
+
+# Dependency directories
+/node_modules/
+/bower_components/
+
+# Build directories
+/dist/
+/out/
+/build/
+
+# Coverage directories for test tools
+/coverage/
+
+# Cache files
+.cache/
+.nyc_output/
+.pnpm-store/
+.pnp/
+
+# Optional npm cache directory
+.npm/
+
+# TypeScript generated files
+*.tsbuildinfo
+
+# Production files
+/build/
+
+# IDE and editor files
+/.vscode/
+/*.swp
+*.swo
+*.sublime-project
+
+# MacOS specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux specific
+.Trash-*/
+
+# Logs and crash reports
+*.log
+*.pid
+*.pid.lock
+
+# JetBrains IDEs
+.idea/
+
+# Firebase specific files
+.firebase/
+.firebaserc
+database.rules.json
+firestore.indexes.json
+firestore.rules
+
+# Local environment files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore yarn error log
+yarn-error.log
+
+# Ignore lock files
+package-lock.json
+yarn.lock

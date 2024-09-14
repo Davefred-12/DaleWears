@@ -1,0 +1,276 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('/Images/pag.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(5px); 
+    z-index: -1;
+}
+
+nav {
+    background-color: #57024e;
+    padding: .1em;
+    line-height: .2em;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f6ee02;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-left: .5em;
+
+}
+
+.easy {
+    color: rgb(255, 255, 255);
+    font-size: 0.5em;
+}
+.main{
+    display: flex;
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 1em;
+    background: rgba(255, 255, 255, 0.1); 
+    border-radius: 20px;
+    text-align: center;
+    z-index: 1;
+}
+
+h3 {
+    font-size: 2em;
+    color: rgb(60, 0, 50);
+    font-family: cursive;
+    margin-bottom: 1em;
+}
+
+h4 {
+    color: rgb(255, 255, 255);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1em;
+    margin-bottom: 1em;
+}
+
+.register-container {
+    border: 2px solid yellow;
+    /* background: rgba(255, 255, 255, 0.1); */
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    max-width: 400px;
+    width: 90%;
+    margin: 2em auto;
+    z-index: 1;
+    height: 70vh;
+    margin-bottom: 1em;
+}
+
+.form-section {
+    width: 100%;
+    padding: 1em;
+}
+
+.form-section h2 {
+    margin-bottom: 0.5em;
+    color: #fdfafd;
+    text-align: center;
+    font-family: cursive;
+    font-size: 2em;
+}
+
+.form-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-section label {
+    margin-bottom: 0.5em;
+    color: #fefcfd;
+    font-weight: bold;
+}
+
+.form-section input {
+    padding: 0.7em;
+    margin-bottom: 1.5em;
+    border: 1px solid #f3eb07;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input[type="password"],
+.password-container input[type="text"] {
+    width: 90%;
+    padding-right: 30px; /* Add padding to make space for the icon */
+}
+
+.password-container .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #8d0088;
+}
+
+/* Add icons using FontAwesome or any other icon library */
+.toggle-password::before {
+    content: "\f06e"; /* FontAwesome eye icon */
+    font-family: "Font Awesome 5 Free"; /* Use the correct font family */
+    font-weight: 900; /* Font weight for FontAwesome solid icons */
+}
+
+.password-container.show-password .toggle-password::before {
+    content: "\f070"; /* FontAwesome eye-slash icon */
+}
+
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    font-size: 0.8em;
+    color: red;
+    margin-bottom: 1em;
+}
+span{
+    font-size: 1em;
+    margin-top: -1em;
+}
+
+.checkbox input {
+    margin-right: 0.5em;
+}
+
+.form-section button {
+    margin-top: -1em;
+    margin-bottom: 1em;
+    padding: 0.7em;
+    background-color: #a704a7;
+    color: #fbfcfa;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-section button:hover {
+    background-color: #230019;
+    color: yellow;
+}
+
+.terms {
+    color: white;
+    line-height: 1.5;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.already {
+    color: white;
+    text-align: center;
+    margin-bottom: -2em;
+}
+
+a {
+    color: rgb(249, 5, 229);
+    text-decoration: none;
+}
+
+a:hover {
+    color: red;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 70%;
+        padding: 1em;
+        font-size: .7em;
+    }
+    .register-container {
+        max-width: 50%;
+        margin: 2em auto;
+    }
+
+    h3 {
+        font-size: 1.5em;
+    }
+
+    h4 {
+        font-size: 0.9em;
+    }
+
+    .form-section h2 {
+        font-size: 1.5em;
+    }
+
+    .form-section input {
+        font-size: 0.9em;
+    }
+
+    .form-section button {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    .easy {
+        font-size: 0.6em;
+    }
+
+    h3 {
+        font-size: 1.2em;
+    }
+
+    h4 {
+        font-size: 0.8em;
+    }
+
+    b {
+        font-size: 1.2em;
+    }
+
+    .form-section h2 {
+        font-size: 1.2em;
+    }
+
+    .form-section input {
+        font-size: 0.8em;
+    }
+
+    .form-section button {
+        font-size: 0.8em;
+    }
+
+    .terms {
+        font-size: 0.7em;
+    }
+}

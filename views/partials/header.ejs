@@ -1,0 +1,49 @@
+<header class="header">
+    <div class="logo">DaleWears<br><p class="easy">...making you comfy</p></div>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+               <li> <a href="/products" >Shop</a>
+                <!-- <div class="dropdown-content">
+                    <a href="/products/couple-wear">Couple Wear</a>
+                    <a href="/products/sweatshirts">Sweatshirts</a>
+                    <a href="/products/hoodies">Hoodies</a>
+                    <a href="/products/tshirts">T-Shirts</a>
+                </div> -->
+            </li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/cart" class="cart-link">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a></li>
+            <% if (username) { %>
+                <li class="dropdown">
+                    <a href="/profile">
+                        <img src="<%= profilePicture %>" class="navbar-profile-pic">
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="/profile">Dashboard</a>
+                        <a href="/logout">Logout</a>
+                    </div>
+                </li>
+                <% } else { %>
+                    <li class="dropdown">
+                        <a href="#" class="sign-up dropdown-toggle">Account</a>
+                        <div class="dropdown-menu">
+                            <a href="/register">Register</a>
+                            <a href="/login">Login</a>
+                        </div>
+                    </li>
+                    
+                <% } %>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+</header>
+
+

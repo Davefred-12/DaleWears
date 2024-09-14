@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/cart.css">
+    <title>cart - DaleWears</title>
+</head>
+<body>
+<%- include('partials/header') %>
+
+
+<section class="cart-section">
+   
+        <h1>Your Cart</h1>
+
+        <div class="cart-items">
+            <% if (cart && cart.length > 0) { %>
+                <% cart.forEach(item => { %>
+                    <div class="cart-item">
+                        <img src="<%= item.imageUrl %>" alt="<%= item.name %>">
+                        <h2><%= item.name %></h2>
+                        <p>Price: NGN<%= item.price %></p>
+                        <p>Quantity: <%= item.quantity %></p>
+                        <p>Total: NGN<%= item.price * item.quantity %></p>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>Your cart is empty.</p>
+            <% } %>
+            <a href="/products" class="btn">Continue Shopping</a>
+            <a href="/checkout" class="btn">Proceed to Checkout</a>
+        </div>
+        
+        
+</section>
+
+
+<%- include('partials/footer') %>
+<script>
+    document.querySelector('.hamburger').addEventListener('click', () => {
+       document.querySelector('.nav-links').classList.toggle('active');
+   });
+</script>
+</body>
+</html>

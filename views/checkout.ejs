@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Checkout</title>
+</head>
+<body>
+    <header>
+        <h1>Mobile Phone Store</h1>
+        <nav>
+            <a href="/" class="btn">Home</a>
+            <a href="/cart" class="btn">Cart</a>
+        </nav>
+    </header>
+    <div class="checkout">
+        <h1>Checkout</h1>
+        <form action="/pay" method="POST">
+            <input type="hidden" name="amount" value="<%= cart.reduce((total, product) => total + product.price, 0) %>">
+            <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+            <h2>Order Summary</h2>
+            <ul>
+                <% cart.forEach(product => { %>
+                    <li><%= product.name %> - NGN<%= product.price %></li>
+                <% }); %>
+            </ul>
+            <h3>Total: NGN<%= cart.reduce((total, product) => total + product.price, 0) %></h3>
+            <button type="submit" class="btn">Pay with Paystack</button>
+        </form>
+    </div>
+</body>
+</html>

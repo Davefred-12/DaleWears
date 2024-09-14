@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/product.css">
+    <script src="/js/home.js"></script>
+    <title>Products - DaleWears</title>
+</head>
+<body>
+
+
+    <%- include('partials/header') %>
+
+
+
+    <section class="products">
+        <h2>Welcome to DaleWears Products<br><b>Our Dear Esteemed Customer</b> </h2>
+        <p>Discover our exclusive range of premium quality clothing designed to keep you stylish and comfortable. At DaleWears, we are committed to providing you with the latest fashion trends and exceptional customer service. Explore our diverse collection of hoodies, t-shirts, sweatshirts, and couple wears, each crafted with care and attention to detail.<br> <i class="ii">Happy shopping!!❤️🛒</i></p>
+
+    <div class="product">
+        <% products.forEach(product => { %>
+            <div class="product-card">
+                <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
+                <h2><%= product.name %></h2>
+                <p><%= product.description %></p>
+                <p>NGN<%= product.price %></p>
+                <form action="/add-to-cart" method="POST">
+                    <input type="hidden" name="productId" value="<%= product.id %>">
+                    <button class="add-to-cart" onclick="addToCart(this)">Add to Cart <i class="fas fa-cart-plus"></i></button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+    <h2>Thank You for Exploring Our Collection!</h2>
+    <p>We hope you found the perfect piece to enhance your wardrobe. At DaleWears, we are committed to providing you with high-quality, stylish, and comfortable clothing that makes you feel confident and unique. Don't forget to check out our latest arrivals and exclusive offers.</p>
+    <p>Need any help or have questions? Our customer service team is here for you. Reach out to us anytime! Stay connected with us on social media for the latest updates and trends.<br> <i class="ii">Happy shopping!!❤️🛍️</i></p>
+<a href="/contact" class="contact-link">Contact Us</a>
+</section> 
+
+
+<%- include('partials/footer') %>
+
+
+<script>
+    function addToCart(button) {
+        // Increment the cart count
+        let cartCountElement = document.querySelector('.cart-count');
+        let currentCount = parseInt(cartCountElement.textContent);
+        cartCountElement.textContent = currentCount + 1;
+
+        // Provide some feedback to the user
+        button.classList.add('added');
+        setTimeout(() => {
+            button.classList.remove('added');
+        }, 2000);
+
+        // Redirect to the cart page
+        window.location.href = '/products';
+    }
+
+    document.querySelector('.hamburger').addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.toggle('active');
+    });
+</script>
+ <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/contact.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <title>Contact Us - DaleWears</title>
+    </head>
+    <body>
+        <%- include('partials/header') %>
+    
+        <section class="contact-us">
+            <h2>Contact Us</h2>
+            <p>If you have any questions, feel free to reach out to us through the form below or via our contact information.</p>
+            
+            <div class="notification" id="notification">
+                <p>Feedback sent successfully!</p>
+                <span class="close-btn" onclick="closeNotification()">&times;</span>
+            </div>
+            
+            <div class="contact-details">
+                <div class="contact-form">
+                    <h3>Get in Touch</h3>
+                    <form id="contactForm" action="/send-message" method="POST">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+    
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+    
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+    
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+    
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><strong>Address:</strong> 2, Road C, Iroko Estate, Igando, Lagos State.</p><br>
+                    <p><strong>Phone:</strong>+234 816 5619 543, +234 816 5619 543</p>
+                    <br>
+                    <p><strong>Email:</strong> <a href="gmail.com">support@dalewears@gmail.com</a></p>
+                    <br>
+                    <p><strong>Customer Support Hours:</strong> Mon-Fri, 9AM - 5PM</p>
+                    <br><br>
+                    <div class="social-media">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section class="faq-section">
+            <h2>Frequently Asked Questions (FAQ)</h2>
+            <div class="faq">
+                <h4>What is your return policy?</h4>
+                <p>Our return policy allows you to return products within 30 days of purchase. For more details, please visit our <a href="/policy">return policy page</a>.</p>
+            </div>
+            <div class="faq">
+                <h4>How do I track my order?</h4>
+                <p>You can track your order using the tracking number provided in your order confirmation email. Visit our <a href="/policy">tracking page</a> for more details.</p>
+            </div>
+            <div class="faq">
+                <h4>Do you offer international shipping?</h4>
+                <p>Yes, we offer international shipping to most countries. Please check our <a href="/policy">shipping policy</a> for more information.</p>
+            </div>
+            <div class="faq">
+                <h4>Can I change or cancel my order?</h4>
+                <p>Yes, you can change or cancel your order within 24 hours of placing it. Please contact our customer support team for assistance. <a href="/policy">Customer Support</a></p>
+            </div>
+            <div class="faq">
+                <h4>What payment methods do you accept?</h4>
+                <p>We accept various payment methods including credit/debit cards, PayPal, and other secure payment options. Please visit our <a href="/policy">payments page</a> for more details.</p>
+            </div>
+            <div class="faq">
+                <h4>How can I contact customer service?</h4>
+                <p>You can contact our customer service via email at support@dalewears.com or by phone at (123) 456-7890. Our support hours are Mon-Fri, 9AM - 5PM.</p>
+            </div>
+        </section>
+        
+        <section class="map-section">
+            <h2>Find Us</h2>
+            <div id="map"></div>
+        </section>
+    
+        <section class="newsletter-section">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Stay updated with our latest news and promotions. Sign up for our newsletter.</p>
+            <form action="/subscribe" method="POST">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </section>
+    <script>
+         document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+   
+
+ <%- include('partials/footer') %>
+    </body>
+    </html>
