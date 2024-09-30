@@ -1,73 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/profile.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <title><%= title %></title>
-</head>
-<body>
+  </head>
+  <body>
     <%- include('partials/header') %>
-     <section class="profile-section">
-    <div class="container">
-        <div class="profile-header">
+    <section class="profile-section">
+        <div class="container">
+          <div class="profile-header">
             <h2>Welcome, <%= user.username %>🎉</h2>
             <div class="profile-picture">
-                <img src="<%= user.profilePicture || '/images/default-avatar.png' %>" alt="Profile Picture" width="150">
+              <img
+                src="<%= user.profilePicture || '/images/default-avatar.png' %>"
+                alt="Profile Picture"
+                width="150"
+              />
             </div>
-        </div>
-
-        <div class="profile-info">
+          </div>
+      
+          <div class="profile-info">
             <form action="/profile" method="POST" enctype="multipart/form-data">
-                <label for="username">Username:</label>
-                <input type="text" name="username" value="<%= user.username %>" readonly>
-                
-                <label for="email">Email:</label>
-                <input type="email" name="email" value="<%= user.email %>" readonly>
-                
-                <label for="profilePicture">Upload Profile Picture:</label>
-                <input type="file" name="profilePicture" id="profilePicture" accept="image/*">
-            
-                <div class="button-group">
-                    <button type="submit" class="btn-update">Update Profile</button>
-                    <a href="/update-profile" class="btn-edit">Edit Profile</a>
-                </div>
+              <label for="username">Username:</label>
+              <input type="text" name="username" value="<%= user.username %>" readonly />
+      
+              <label for="email">Email:</label>
+              <input type="email" name="email" value="<%= user.email %>" readonly />
+      
+              <label for="profilePicture">Upload Profile Picture:</label>
+              <input type="file" name="profilePicture" id="profilePicture" accept="image/*" />
+      
+              <div class="button-group">
+                <button type="submit" class="btn-update">Update Profile</button>
+                <a href="/update-profile" class="btn-edit">Edit Profile</a>
+              </div>
             </form>
+          </div>
+      
+          <!-- New Section for Purchase History -->
+          <div class="purchase-history">
+            <h3>Your Purchase History</h3>
+            <ul>
+              <% if (user.purchases && user.purchases.length > 0) { %>
+                <% user.purchases.forEach(purchase => { %>
+                  <li>
+                    Product: <%= purchase.productId.name %>, 
+                    Quantity: <%= purchase.quantity %>, 
+                    Date: <%= purchase.purchaseDate.toLocaleDateString() %>
+                  </li>
+                <% }); %>
+              <% } else { %>
+                <li>No purchase history found.</li>
+              <% } %>
+            </ul>
+          </div>
         </div>
-    </div>
-     </section>
-
-     <section class="dashboard">
-        <h2>Purchased Items</h2>
-        <ul>
-            <% if (purchasedItems.length > 0) { %>
-                <% purchasedItems.forEach(item => { %>
-                    <li><%= item.name %> - $<%= item.price %></li>
-                <% }) %>
-            <% } else { %>
-                <li>No items purchased yet.</li>
-            <% } %>
-        </ul>
-
-        <h2>Saved for Later</h2>
-        <ul>
-            <% if (savedItems.length > 0) { %>
-                <% savedItems.forEach(item => { %>
-                    <li><%= item.name %> - $<%= item.price %></li>
-                <% }) %>
-            <% } else { %>
-                <li>No items saved yet.</li>
-            <% } %>
-        </ul>
-    </section>
+      </section>
+      
 
     <%- include('partials/footer') %>
 
     <script>
-        document.querySelector('.hamburger').addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
+      document.querySelector(".hamburger").addEventListener("click", () => {
+        document.querySelector(".nav-links").classList.toggle("active");
+      });
     </script>
-</body>
+  </body>
 </html>

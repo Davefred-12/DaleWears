@@ -88,8 +88,12 @@ const userSchema = new mongoose.Schema({
     profilePicture: { type: String, default: '/images/default-profile.png' },
     resetCode: String,
     resetCodeExpiry: Date,
-    purchasedProducts: [{ productId: Number, quantity: Number, purchasedAt: Date }]
-});
+        purchases: [{
+            productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+            quantity: Number,
+            purchaseDate: { type: Date, default: Date.now }
+        }]
+    });
 
 
 const User = mongoose.model('User', userSchema);
@@ -107,6 +111,11 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
+
 
 // Middleware to Pass Profile Picture to Views
 app.use((req, res, next) => {
@@ -147,7 +156,7 @@ const products = [
         name: 'Spectra Nova X5',
         price: 100,
         description: 'A sleek and powerful smartphone featuring a 6.7-inch OLED display, 108MP quad-camera system, 5G connectivity, and a 5000mAh battery for all-day performance and stunning photography.',
-        imageUrl: '/Images/phone1.png'
+        imageUrl: '/Images/pz.jpg'
     },
     {
         id: 2,
@@ -201,6 +210,11 @@ app.get('/register', (req, res) => {
 app.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
     try {
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.render('register', { error: 'Email already registered.' });
+        }
+
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new User({ username, email, password: hashedPassword });
         await user.save();
@@ -208,10 +222,11 @@ app.post('/register', async (req, res) => {
         req.session.username = user.username;
         res.redirect('/thankyou');
     } catch (error) {
-        console.log('Registration error:', error);
-        res.redirect('/register');
+        console.error('Registration error:', error);
+        res.render('register', { error: 'Registration failed. Please try again.' });
     }
 });
+
 
 app.get('/thankyou', (req, res) => {
     res.render('thankyou', { title: 'Thank You' });
@@ -314,14 +329,13 @@ app.get('/cart', (req, res) => {
 });
 
 
-// Route to display the checkout
-app.get('/checkout', checkAuth, (req, res) => {
-    res.render('checkout', { cart, user: req.session.user });
-    res.redirect('/cart');
-
+// Save cart to user's profile
+app.post('/checkout', checkAuth, async (req, res) => {
+    const user = await User.findById(req.session.userId);
+    user.cart = req.session.cart; // Store the current session cart in the user's profile
+    await user.save();
+    res.redirect('/payment'); // Redirect to payment page after saving cart
 });
-
-
 
 
 // Payment processing logic
@@ -347,72 +361,107 @@ app.post('/pay', checkAuth, (req, res) => {
     });
 });
 
-
+app.get('/payment/callback', async (req, res) => {
+    const { reference } = req.query;
+    // Verify transaction status using Paystack API
+    try {
+        const response = await axios.get(`https://api.paystack.co/transaction/verify/${reference}`, {
+            headers: {
+                Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`
+            }
+        });
+        // Process response
+        if (response.data.data.status === 'success') {
+            // Save the purchase to the user’s profile
+            // Redirect to success page
+        } else {
+            // Handle failed payment
+        }
+    } catch (error) {
+        console.error('Error verifying payment:', error);
+        res.status(500).send('Error processing payment callback');
+    }
+});
 
 // Forgot-Password page
 app.get('/forgot-password', (req, res) => {
     res.render('forgot-password');
 });
-
 app.post('/forgot-password', async (req, res) => {
     const email = req.body.email;
-    console.log('Received email in forgot-password route:', email);
 
     if (!email) {
         return res.status(400).json({ message: 'Email is required.' });
     }
 
     try {
-        // Your code to generate the verification code and send the email
-        const verificationCode = generateToken(); // Ensure this function is defined and used correctly
+        const verificationCode = generateToken();
         await sendResetEmail(email, verificationCode);
-        console.log('Generated Verification Code:', verificationCode);
-        res.status(200).json({ message: 'Verification code sent successfully!' });
+
+        // Redirect to the verification page with email as a query parameter
+        res.redirect(`/verify-reset?email=${encodeURIComponent(email)}`);
     } catch (error) {
-        console.error('Error processing forgot password request:', error);
-        res.status(500).json({ message: 'Error processing forgot password request.' });
+        console.error('Error in forgot-password:', error.message); // Log the error message
+        return res.status(500).json({ message: 'An error occurred while processing your request.' });
     }
 });
 
-// Payment callback route
-// app.get('/payment/callback', (req, res) => {
-//     const { reference } = req.query;
-
-//     const headers = {
-//         Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
-//         'Content-Type': 'application/json'
-//     };
-
-//     axios.get(`https://api.paystack.co/transaction/verify/${reference}`, { headers })
-//     .then(response => {
-//         if (response.data.data.status === 'success') {
-//             // Move items from cart to purchased items
-//             purchasedItems.push(...cart);
-//             cart = [];
-//             res.redirect('/dashboard');
-//         } else {
-//             res.send('Payment was not successful');
-//         }
-//     })
-//     .catch(error => {
-//         console.error(error);
-//         res.send('An error occurred while verifying payment');
-//     });
-// });
 
 
+// Reset Password Page
+app.get('/reset-password/:token', async (req, res) => {
+    const { token } = req.params;
+    const user = await User.findOne({ resetCode: token, resetCodeExpiry: { $gt: Date.now() } });
+
+    if (!user) {
+        return res.status(400).render('reset-password', { message: 'Invalid or expired token.' });
+    }
+
+    res.render('reset-password', { title: 'Reset Password', token });
+});
+
+// Reset Password Logic
+app.post('/reset-password/:token', async (req, res) => {
+    const { token } = req.params;
+    const { password } = req.body;
+
+    try {
+        const user = await User.findOne({ resetCode: token, resetCodeExpiry: { $gt: Date.now() } });
+
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid or expired token.' });
+        }
+
+        // Hash the new password and save it
+        user.password = await bcrypt.hash(password, 10);
+        user.resetCode = undefined; // Clear the reset code
+        user.resetCodeExpiry = undefined; // Clear the expiry date
+        await user.save();
+
+        res.redirect('/login'); // Redirect to login page after successful password reset
+    } catch (error) {
+        console.error('Error resetting password:', error);
+        res.status(500).json({ message: 'An error occurred while resetting the password.' });
+    }
+});
+
+// Ensure to render the correct views for these routes
+app.get('/reset-password', (req, res) => {
+    res.render('reset-password', { title: 'Reset Password' });
+});
 
 
-// Verify Password page
-app.get('/verify', (req, res) => {
-    const { email } = req.query;
-    console.log('Received email in verify route:', email); // Debugging log
+app.get('/verify-reset', async (req, res) => {
+    const { email } = req.query; // Extracting email from query parameters
+
+    console.log('Received email in verify route:', email); // Log the email to check its value
 
     if (!email) {
         return res.status(400).send('Email query parameter is missing.');
     }
 
-    res.render('verify', { email });
+    // Render the verification page
+    res.render('verify-reset', { email });
 });
 
 
@@ -434,74 +483,30 @@ app.post('/verify', async (req, res) => {
     }
 });
 
-
-
-
-// Reset password page
-app.get('/reset-password', (req, res) => {
-    const { email } = req.query;
-    console.log('Received email in reset-password route:', email); // Debugging log
-
-    if (!email) {
-        return res.status(400).send('Email query parameter is missing.');
-    }
-
-    res.render('reset-password', { email });
+app.get('/profile', checkAuth, (req, res) => {
+    User.findById(req.session.userId)
+        .populate('purchases.productId') // Populate product details if necessary
+        .then(user => {
+            res.render('profile', { user, title: 'Your Profile' });
+        })
+        .catch(err => {
+            console.error('Error fetching user data:', err);
+            res.redirect('/login');
+        });
 });
 
 
-app.post('/reset-password', async (req, res) => {
-    const { email, password, confirmPassword } = req.body;
-
-    if (password !== confirmPassword) {
-        return res.status(400).send('Passwords do not match.');
-    }
-
+app.post('/profile', upload.single('profilePicture'), async (req, res) => {
     try {
-        const user = await User.findOne({ email });
-
-        if (!user) {
-            return res.status(400).send('Invalid email.');
-        }
-
-        // Update the user's password
-        user.password = password;
-        user.resetCode = null; // Clear the reset code
-        user.resetCodeExpiry = null; // Clear the expiry
-        await user.save();
-
-        res.send('Password successfully reset.');
-    } catch (error) {
-        console.error('Error resetting password:', error);
-        res.status(500).send('Server error. Please try again later.');
-    }
-});
-
-// Profile page
-app.get('/profile', checkAuth, async (req, res) => {
-    try {
-        const user = await User.findById(req.session.userId).populate('purchasedProducts.productId');
-        res.render('profile', { title: 'Profile', user });
-    } catch (err) {
-        console.log('Error fetching user:', err);
-        res.redirect('/');
-    }
-});
-
-
-app.post('/profile', checkAuth, upload.single('profilePicture'), async (req, res) => {
-    try {
-        const userId = req.session.userId;
-        const user = await User.findById(userId);
-        
+        // Update user's profile picture and info if uploaded
+        const updatedData = {};
         if (req.file) {
-            user.profilePicture = `/uploads/${req.file.filename}`;
+            updatedData.profilePicture = `/uploads/${req.file.filename}`;
         }
-
-        await user.save();
+        await User.findByIdAndUpdate(req.session.userId, updatedData);
         res.redirect('/profile');
-    } catch (error) {
-        console.log('Error updating profile:', error);
+    } catch (err) {
+        console.error('Error updating profile:', err);
         res.redirect('/profile');
     }
 });
